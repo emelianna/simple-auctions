@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/simple-auctions.Tests/">
+    <Project Path="simple-auctions.Tests/SimpleAuctions.Tests.csproj" />
+  </Folder>
+  <Folder Name="/simple-auctions/">
+    <Project Path="simple-auctions/SimpleAuctions.csproj" />
+  </Folder>
+</Solution>
