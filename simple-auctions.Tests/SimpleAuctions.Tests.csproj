@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\simple-auctions\SimpleAuctions.csproj" />
+  </ItemGroup>
+
 </Project>
