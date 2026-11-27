@@ -44,7 +44,7 @@ Teknik: Ekvivalensklass (ogiltig indata, ej heltal)
 Förutsättningar: API:et körs
 Steg: 1. GET /api/auctions/abc/bids
 Testdata: id = abc
-Förväntat: 404 (eller 400), ingen krasch
+Förväntat: 404, ingen krasch
 Faktiskt: 404 Not Found
 Resultat: PASS
 Branch/PR: feature/budregler (lokal)
