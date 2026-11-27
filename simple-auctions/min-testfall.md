@@ -23,3 +23,29 @@ Faktiskt: 200 OK, ordning 300, 200, 100
 Resultat: PASS
 Branch/PR: feature/budregler (lokal, samma som dev)
 Vem: Danial, 2026-11-26
+
+[TEST] Manuellt
+ID: TM-BID-03
+Testfall: Auktion utan bud ger tom lista
+Teknik: Gränsvärdesanalys (0 bud)
+Förutsättningar: Auktion 2 finns, inga bud
+Steg: 1. GET /api/auctions/2/bids
+Testdata: id = 2
+Förväntat: 200 OK, []
+Faktiskt: 200 OK, []
+Resultat: PASS
+Branch/PR: feature/budregler (lokal)
+Vem: Danial, 2026-11-27
+
+[TEST] Manuellt
+ID: TM-BID-04
+Testfall: Ogiltigt auktions-id (bokstäver)
+Teknik: Ekvivalensklass (ogiltig indata, ej heltal)
+Förutsättningar: API:et körs
+Steg: 1. GET /api/auctions/abc/bids
+Testdata: id = abc
+Förväntat: 404 (eller 400), ingen krasch
+Faktiskt: 404 Not Found
+Resultat: PASS
+Branch/PR: feature/budregler (lokal)
+Vem: Danial, 2026-11-27
