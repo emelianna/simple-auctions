@@ -1,0 +1,143 @@
+{
+  "info": {
+    "_postman_id": "cb744250-d4f6-4a07-99dc-d99ca6f77cc5",
+    "name": "Danial – Bids",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "60285763",
+    "_collection_link": "https://go.postman.co/collection/60285763-cb744250-d4f6-4a07-99dc-d99ca6f77cc5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "TM-BID-01 Auction not found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"TM-BID-01: Auction not found returns 404\", function () {\n    pm.response.to.have.status(404);\n});\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/auctions/999/bids",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auctions",
+            "999",
+            "bids"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TM-BID-04 Invalid id returns 404",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"TM-BID-04: Invalid id returns 404\", function () {\n    pm.response.to.have.status(404);\n});\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/auctions/abc/bids",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auctions",
+            "abc",
+            "bids"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TM-BID-02 Bids highest first",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"TM-BID-02: Status is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"TM-BID-02: Bids sorted highest first\", function () {\n    const bids = pm.response.json();\n    pm.expect(bids[0].amount).to.eql(300);\n    pm.expect(bids[1].amount).to.eql(200);\n    pm.expect(bids[2].amount).to.eql(100);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/auctions/1/bids",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auctions",
+            "1",
+            "bids"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TM-BID-03 No bids returns empty list",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"TM-BID-03: Status is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"TM-BID-03: Bid list is empty\", function () {\n    const bids = pm.response.json();\n    pm.expect(bids).to.be.an(\"array\").that.is.empty;\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/auctions/2/bids",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auctions",
+            "2",
+            "bids"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
