@@ -4,8 +4,8 @@ using MySqlConnector;
 using SimpleAuctions.DTOs;
 using SimpleAuctions.Models;
 using SimpleAuctions.Repositories;
-
 namespace SimpleAuctions.Endpoints;
+using SimpleAuctions.Rules;
 
 public static class UserEndpoints
 {
@@ -15,9 +15,9 @@ public static class UserEndpoints
             IPasswordHasher<User> hasher) =>
         {
             string email = data.Email?.Trim().ToLowerInvariant() ?? "";
-            if (email.Length > 254 || !MailAddress.TryCreate(email, out var address) || address.Address != email
-                || string.IsNullOrWhiteSpace(data.Password) || data.Password.Length > 128)
-                return Results.BadRequest(new { message = "A valid email and password (1–128 characters) are required." });
+            string? error = UserRules.Validate(email, data.Password);
+            if (error is not null)
+                return Results.BadRequest(new { message = error });
             var user = new User(0, email, "");
             string hash = hasher.HashPassword(user, data.Password);
             try
